@@ -15,7 +15,7 @@
 //! }
 //! ```
 //!
-//! ## Example: Target
+//! ## Example: Client
 //! ```rust
 //! use bevy::prelude::*;
 //! use bevy_connection::prelude::*;
@@ -24,16 +24,18 @@
 //!     let mut app = App::new();
 //!
 //!     #[cfg(debug_assertions)]
-//!     app.add_plugins(AcceptorPlugin);
+//!     app.add_plugins(ClientPlugin);
 //!
 //!     app.run();
 //! }
 //! ```
-pub mod communication;
-pub mod connection;
+mod utils;
+
+pub mod client;
+pub mod event;
+pub mod initiator;
 
 pub mod prelude {
-    pub use super::communication::*;
-    pub use super::connection::{client::*, event::*, initiator::*};
+    pub use super::{client::*, event::*, initiator::*};
     pub use bevy::remote::http::{HostAddress, HostPort};
 }
